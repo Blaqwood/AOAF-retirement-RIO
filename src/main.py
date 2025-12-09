@@ -23,36 +23,21 @@ def variableInvestor(principal, rateList):
 def finallyRetired(balance, expense, rate):
     years = 0
     current_balance = balance
-    # Safety limit to prevent infinite loops if interest > expense
+    # safety limit to prevent infinite loops if interest > expense
     while current_balance > 0 and years < 100:
-        # Interest is applied before or after withdrawal? 
-        # Standard model: Interest adds, then expense subtracts.
+        # add interest
         interest = current_balance * rate
         current_balance += interest
         current_balance -= expense
         years += 1
     return years
 
-def finallyRetired2(balance, expense, rate):
-    # Returns the number of years until fund depletion.
-    current_balance = balance
-    # cap to 
-    for years in range(100):
-        if current_balance <= 0:
-            return years
-
-        interest = current_balance * rate
-        current_balance += interest
-        current_balance -= expense
-        years += 1
-
 def maximumExpensed(balance, rate):
     #Task 4: Use Binary Search to find max sustainable withdrawal.
     years = 30 # assume they retire for 30 years
     low = 0.0
-    high = fixedInvestor(balance, rate, years)
-
     optimal_withdrawal = 0.0
+    high = fixedInvestor(balance, rate, years)
 
     # Binary Search
     while high - low > 0:
@@ -116,9 +101,8 @@ if __name__ == "__main__":
                     expense = float(input("Enter Annual Expense/Withdrawal: ($)"))
                     rate = float(input("Enter Expected Interest Rate (e.g 0.03): "))
                     result = finallyRetired(balance, expense, rate)
-                    result2 = finallyRetired2(balance, expense, rate)
+                    
                     print(f"Funds will last for approximately {result} years.")
-                    print(f"Funds will last for approximately {result2} years.")
                 case '4':
                     balance = float(input("Enter Retirement Balance: ($)"))
                     rate = float(input("Enter Expected Interest Rate (decimal): "))
@@ -126,7 +110,7 @@ if __name__ == "__main__":
                     
                     result = maximumExpensed(balance, rate)
                     
-                    print(f"Optimal Annual Withdrawal over : ${result:,.2f}")
+                    print(f"Optimal Annual Withdrawal over : ${result:.2f}")
                     print(f"(This reduces balance to near zero after 30 years)")
                 case '5':
                     print("Exiting...")
