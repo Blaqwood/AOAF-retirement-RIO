@@ -127,7 +127,7 @@ if __name__ == "__main__":
                     result = maximumExpensed(balance, rate)
                     
                     print(f"Optimal Annual Withdrawal over : ${result:,.2f}")
-                    print(f"(This reduces balance to near zero after {year} years)")
+                    print(f"(This reduces balance to near zero after 30 years)")
                 case '5':
                     print("Exiting...")
                     break
