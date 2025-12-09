@@ -84,7 +84,7 @@ if __name__ == "__main__":
         print("4. Optimize Withdrawal (Binary Search)")
         print("5. Exit")
         
-        while True:
+        try:
             choice = input("Select an option (1-5): ")
             
             match choice:
@@ -133,7 +133,7 @@ if __name__ == "__main__":
                     break
                 case _:
                     print("Invalid selection. Try again.")
-        #except ValueError:
-        #    print("Invalid input")
-        #except:
-        #    print("An unknown error occurred")
+        except ValueError:
+            print("Invalid input")
+        except:
+            print("An unknown error occurred")
